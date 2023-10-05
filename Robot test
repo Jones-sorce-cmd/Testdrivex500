@@ -1,0 +1,27 @@
+# Define a function to move the robot forward for a given number of rotations
+def go_forward(rotations):
+    print(f"Going forward {rotations} rotations")
+    # Replace this with actual code to control your robot's motors
+    time.sleep(1)  # Simulate the time it takes to complete the action
+
+# Define a function to turn the robot left 90 degrees
+def turn_left():
+    print("Turning left 90 degrees")
+    # Replace this with actual code to control your robot's motors for turning
+    time.sleep(1)  # Simulate the time it takes to complete the action
+
+# Main program
+if __name__ == "__main__":
+    try:
+        # Go forward 20 rotations
+        go_forward(20)
+        
+        # Turn left 90 degrees
+        turn_left()
+        
+        # Go forward 15 rotations
+        go_forward(15)
+        
+    except KeyboardInterrupt:
+        # Handle Ctrl+C to stop the program gracefully
+        print("Program stopped")
