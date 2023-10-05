@@ -1,0 +1,71 @@
+import vex
+import sys
+
+# Initialize the VEX robot
+brain = vex.Brain()
+motor_left = vex.Motor(vex.Ports.PORT1, vex.GearSetting.RATIO18_1, False)
+motor_right = vex.Motor(vex.Ports.PORT2, vex.GearSetting.RATIO18_1, True)
+color_sensor = vex.ColorSensor(vex.Port.PORT3)
+
+# Constants for motor rotations
+ROTATIONS_FORWARD = 2
+ROTATIONS_BACKWARD = 10
+
+# Constants for time intervals
+TIME_NAVIGATE = 20  # seconds
+
+# Constants for color detection
+RED_COLOR_THRESHOLD = 10  # Adjust this value based on your sensor readings
+
+# Main program
+def main():
+    start_time = brain.timer.time()
+    
+    while brain.timer.time() - start_time < TIME_NAVIGATE:
+        # Move forward as long as the color is not red
+        if color_sensor.red() < RED_COLOR_THRESHOLD:
+            motor_left.spin(vex.DirectionType.FWD, 50, vex.VelocityUnits.PCT)
+            motor_right.spin(vex.DirectionType.FWD, 50, vex.VelocityUnits.PCT)
+        else:
+            stop_motors()
+            break
+    
+    # Open the claw
+    open_claw()
+    
+    # Move forward for 2 rotations
+    move_forward(ROTATIONS_FORWARD)
+    
+    # Close the claw
+    close_claw()
+    
+    # Move backward for 10 rotations
+    move_backward(ROTATIONS_BACKWARD)
+    
+    # Stop the motors
+    stop_motors()
+
+# Helper functions
+def stop_motors():
+    motor_left.stop(vex.BrakeType.COAST)
+    motor_right.stop(vex.BrakeType.COAST)
+
+def open_claw():
+    # Implement claw opening logic here
+    pass
+
+def close_claw():
+    # Implement claw closing logic here
+    pass
+
+def move_forward(rotations):
+    # Implement forward motion logic here
+    pass
+
+def move_backward(rotations):
+    # Implement backward motion logic here
+    pass
+
+# Run the main program
+if __name__ == '__main__':
+    main()
