@@ -1,0 +1,35 @@
+ Import necessary libraries or modules (Botball specific)
+import create
+
+# Initialize the robot (Botball specific)
+create.create_connect()
+
+# Define a function to go forward 20 rotations (Botball specific)
+def go_forward():
+    create.create_drive_direct(200, 200)  # Assuming motors are set to full speed
+    create.create_drive_wait()
+
+# Define a function to turn left 90 degrees (Botball specific)
+def turn_left():
+    create.create_drive_direct(-200, 200)  # Assuming motors are set to full speed
+    create.create_drive_wait()
+
+# Main program
+if __name__ == "__main__":
+    try:
+        # Go forward 20 rotations (Botball specific)
+        for _ in range(20):
+            go_forward()
+        
+        # Turn left 90 degrees (Botball specific)
+        turn_left()
+        
+        # Go forward 15 rotations (Botball specific)
+        for _ in range(15):
+            go_forward()
+        
+    except KeyboardInterrupt:
+        # Handle Ctrl+C to stop the program gracefully
+        print("Program stopped")
+
+# Disconnect from the robot
